@@ -1,0 +1,33 @@
+@startuml
+actor Customer as Foo
+participant "Website" as Foo1 
+participant "Login/Register Page" as Foo2 
+participant "Shopping Cart" as Foo3 
+participant "Payment Page" as Foo4 
+participant "Order Confirmation" as Foo5 
+participant "Order Delivered" as Foo6 
+activate Foo
+activate Foo1
+Foo -> Foo1 : Search and View Items 
+Foo1 --> Foo : Display Products 
+Foo1 -> Foo2 : Login to place order 
+deactivate Foo1
+activate Foo2
+Foo2 -> Foo3 : Add items to Cart 
+deactivate Foo2
+activate Foo3
+Foo3 --> Foo : Order Details
+Foo3 -> Foo4 : Proceed to Payment 
+deactivate Foo3
+activate Foo4
+Foo4 --> Foo : Payment Confirmation 
+Foo4 -> Foo5 : Payment Completed 
+deactivate Foo4
+activate Foo5
+Foo5 --> Foo : Delivery and Tracking Details 
+activate Foo6
+Foo5 -> Foo6 : Order Shipped and Delivered 
+deactivate Foo5
+deactivate Foo6 
+deactivate Foo 
+@enduml

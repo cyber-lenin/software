@@ -1,0 +1,32 @@
+@startuml 
+!define USER user 
+skinparam monochrome true 
+start 
+-> Starting; 
+:User Registration; 
+:Collect User Information; 
+if (Valid Information?) then (yes) 
+ :Store User Information; 
+ :Generate User_ID and Password; 
+ -> Registration Successful; 
+else (no) 
+ :Display Error Message; 
+ -> Registration Failed; 
+ :Back to User Registration; 
+ -> Exit; 
+ 
+endif 
+:Log Id and Password; 
+ if (Authentication Successful?) then (yes) 
+ :Grant Access to System; 
+ -> Access Granted; 
+ else (no) 
+ :Display Login Error; 
+
+ -> Access Denied; 
+ endif 
+:set user level and permission; 
+:Access the internal functionalitiesas per permissions; 
+:log out; 
+stop 
+@enduml 

@@ -1,0 +1,65 @@
+@startuml 
+class Person { 
+ - JobID 
+ - firstName 
+ - lastName 
+ - email 
+} 
+class Student { 
+
+ - studentID 
+ - enrolledCourses 
+ + enrollInCourse(course) 
+ + viewAttendance(session) 
+} 
+class Faculty { 
+ - facultyID 
+ - coursesTaught 
+ + teachCourse(course) 
+ + markAttendance(session, student) 
+} 
+class Course { 
+ - courseID 
+ - courseName 
+ - sessions 
+ + addSession(session) 
+} 
+class Vendor { 
+ - vendorID 
+ 
+ + workingHours() 
+ + viewAttendance() 
+} 
+class ClassSession { 
+ - sessionID 
+ - date 
+ - startTime 
+ - endTime 
+ - attendanceList 
+ + startSession() 
+ + endSession() 
+ + addAttendance(student) 
+
+} 
+class Verify{ 
+ -LogIn() 
+} 
+class Attendance { 
+ - attendanceID 
+ - attendanceList() 
+} 
+left to right direction 
+Person <|-- Student 
+Person <|-- Faculty 
+Person <|-- Vendor 
+Faculty "teaches" o-- ".." Course 
+Student " enrolls" o-- ".." Course 
+Course -- "0.." ClassSession 
+Student "View Attendance" o-- "1..*" Attendance 
+Vendor "View Attendance" o-- "1..*" Attendance 
+Faculty "View Attendance" o-- "1..*" Attendance 
+ClassSession o-- "0..*" Attendance 
+Verify ..> Student : Dependency 
+Verify ..> Faculty : Dependency 
+Verify ..> Vendor : Dependency 
+@enduml

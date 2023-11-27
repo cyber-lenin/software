@@ -1,0 +1,35 @@
+@startuml
+left to right direction
+
+actor Passenger 
+actor Bank
+actor Admin
+
+
+rectangle "Airline Reservation System" {
+    
+    Passenger --> (Login)
+    Passenger --> (Flight Time and Location)
+    
+    Passenger --> (Check Availability)
+    (Choose Seat) .up.> (Book Ticket): <<extend>>
+    Passenger --> (Book Ticket)
+    (Book Ticket) .left.> (Fill Details): <<include>>
+    (Fill Details) .left.> (Validate Card Details) :<<include>>
+    (Validate Card Details) -- (Process Payment)
+    Bank -up-> (Process Payment)
+    Passenger --> (Recieve Ticket)
+    Passenger --> (Cancel Ticket)
+    (Cancel Ticket) .left.> (Refund): <<include>>
+    Bank -up-> (Refund)
+    Admin -->(Login)
+    Admin --> (Generate Ticket)
+    Passenger --> (Get Boarding Pass)
+    Admin -->(Update Flight Schedule)
+}
+
+
+
+
+
+@enduml

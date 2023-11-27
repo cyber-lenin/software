@@ -1,0 +1,41 @@
+@startuml
+left to right direction 
+actor "Customer" as fc
+usecase "Login User" as UC01 
+rectangle {
+usecase "View Items" as UC1
+usecase "Search Items and Add to cart" as UC2 
+usecase "Manage Items" as UC3
+usecase "Manager Orders" as UC4 
+usecase "Place order" as UC5 
+usecase "Make Payment" as UC6 
+usecase "Cancel Order" as UC7 
+usecase "Order History" as UC8 
+usecase "Notification" as UC9 
+usecase "Change Password" as UC10
+}
+UC01 -->UC1 
+UC01 --> UC2 
+UC01 --> UC3 
+UC01 --> UC4 
+UC01 --> UC5 
+UC01 --> UC6 
+UC01 --> UC7 
+UC01 --> UC8 
+UC01 --> UC9 
+UC01 --> UC10
+actor "Admin" as ad
+usecase "Login Admin" as UC02
+ad -->UC02 
+fc -->UC01
+UC02 -->UC1 
+UC02 --> UC2 
+UC02 --> UC3 
+UC02 --> UC4 
+UC02 --> UC5 
+UC02 --> UC6 
+UC02 --> UC7 
+UC02 --> UC8 
+UC02 --> UC9 
+UC02 --> UC10
+@enduml

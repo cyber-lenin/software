@@ -1,0 +1,28 @@
+@startuml
+skin rose
+
+title Online Cab Booking State Diagram 
+[*] --> Idle
+
+Idle --> Searching : Start Booking
+Idle : Idle Sate
+Searching --> Booking : Select Cab
+Searching --> NotFound : No Cab Available
+Searching --> Interrupt  : Cancelled 
+Searching:Searching cabs
+
+Booking -->OnTrip : Confirm Booking
+Booking --> NotFound : Abandoned
+Booking:Booking cabs
+NotFound: No good offers
+Booking --> Interrupt  : Cancelled 
+Interrupt--> [*] : Close
+OnTrip --> Completed : Reached Destination
+Interrupt: Interruptions
+OnTrip: En route
+Completed --> [*] : End Trip
+
+Completed: Ride completion/Rate Driver
+NotFound --> Searching : Retry Booking
+NotFound--> [*]  : Close
+@enduml

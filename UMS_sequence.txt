@@ -1,0 +1,26 @@
+@startuml 
+title University Attendance Management System 
+participant Student 
+participant Faculty 
+participant System 
+participant Admin 
+participant Vendor 
+Admin -> System: Login 
+System -> Admin: Login Confirmation 
+Admin -> Vendor: Vendor Login Request 
+Vendor --> Admin: Login Approval 
+Admin -> System: Monitor Vendor Attendance 
+System -> Vendor: Request Vendor Attendance 
+Vendor -> Vendor: Mark Attendance 
+Vendor --> System: Attendance Marked 
+System --> Admin: Vendor Attendance Information 
+Student -> Faculty: Enroll in Course 
+Faculty -> System: Enroll Student 
+System --> Faculty: Enrollment Confirmation 
+Faculty --> Student: Enrollment Confirmation 
+Student -> System: Mark Attendance 
+System -> Faculty: Request Attendance Marking 
+Faculty -> Faculty: Mark Attendance 
+Faculty --> System: Attendance Marked 
+System --> Student: Attendance Marked 
+@enduml
