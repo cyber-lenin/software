@@ -1,0 +1,88 @@
+@startuml
+class Bank {
+    - name: String
+    - address: String
+    - accounts: List<Account>
+    - employees: List<Employee>
+    + createAccount(accountInfo: AccountInfo): Account
+    + closeAccount(account: Account): void
+    + getAccount(accountNumber: String): Account
+    + addEmployee(employee: Employee): void
+    + removeEmployee(employee: Employee): void
+    + getName(): String
+    + setName(name: String): void
+    + getAddress(): String
+    + setAddress(address: String): void
+}
+
+class Account {
+    - accountNumber: String
+    - balance: double
+    - accountInfo: AccountInfo
+    - transactions: List<Transaction>
+    + deposit(amount: double): void
+    + withdraw(amount: double): boolean
+    + getBalance(): double
+    + getAccountNumber(): String
+    + setAccountNumber(accountNumber: String): void
+    + getAccountInfo(): AccountInfo
+    + setAccountInfo(accountInfo: AccountInfo): void
+    + addTransaction(transaction: Transaction): void
+    + getTransactions(): List<Transaction>
+}
+
+class AccountInfo {
+    - holderName: String
+    - initialDeposit: double
+    + getHolderName(): String
+    + setHolderName(holderName: String): void
+    + getInitialDeposit(): double
+    + setInitialDeposit(initialDeposit: double): void
+}
+
+class Transaction {
+    - transactionId: String
+    - date: Date
+    - amount: double
+    + getTransactionId(): String
+    + setTransactionId(transactionId: String): void
+    + getDate(): Date
+    + setDate(date: Date): void
+    + getAmount(): double
+    + setAmount(amount: double): void
+}
+
+class Employee {
+    - employeeId: String
+    - name: String
+    - designation: String
+    + getEmployeeId(): String
+    + setEmployeeId(employeeId: String): void
+    + getName(): String
+    + setName(name: String): void
+    + getDesignation(): String
+    + setDesignation(designation: String): void
+}
+
+class Customer {
+    - customerId: String
+    - name: String
+    - address: String
+    - accounts: List<Account>
+    + getCustomerId(): String
+    + setCustomerId(customerId: String): void
+    + getName(): String
+    + setName(name: String): void
+    + getAddress(): String
+    + setAddress(address: String): void
+    + addAccount(account: Account): void
+    + removeAccount(account: Account): void
+}
+
+Bank "1" -- "*" Account : contains
+Account "1" *-- "1" AccountInfo : has
+Account "1" *-- "*" Transaction : has
+Employee "0..*" -- "1" Bank : worksFor
+Account "0..*" -- "0..*" Customer : belongsTo
+
+@enduml
