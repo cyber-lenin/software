@@ -1,0 +1,17 @@
+@startuml
+
+actor Patient
+actor Receptionist
+actor Doctor
+
+Participant "Hospital Management System" as HMS
+
+Patient -> HMS: requestAppointment()
+HMS -> Receptionist: receiveAppointmentRequest()
+Receptionist -> HMS: checkDoctorAvailability()
+HMS -> Doctor: checkAvailability()
+Doctor --> HMS: provideAvailability()
+HMS --> Receptionist: provideAvailability()
+Receptionist --> Patient: confirmAppointment()
+
+@enduml

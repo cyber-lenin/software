@@ -1,0 +1,68 @@
+@startuml
+
+class Airline {
+  - name: string
+  - code: string
+  - country: string
+  - hub: string
+  + airplanes: list<Airplane>
+  + flights: list<Flight>
+  --
+  + addAirplane(airplane: Airplane): void
+  + getFlights(): list<Flight>
+  + getAirplanes(): list<Airplane>
+}
+
+class Airplane {
+  - model: string
+  - manufacturer: string
+  - capacity: int
+  - airline: Airline
+  --
+  + checkAvailability(flight: Flight): bool
+  + getAvailableSeats(): int
+  + assignFlight(flight: Flight): void
+}
+
+class Airport {
+  - name: string
+  - code: string
+  - location: string
+  + flightsDeparting: list<Flight>
+  + flightsArriving: list<Flight>
+  --
+  + getDepartingFlights(): list<Flight>
+  + getArrivingFlights(): list<Flight>
+}
+
+class Flight {
+  - flightNumber: string
+  - departureTime: datetime
+  - arrivalTime: datetime
+  - departureAirport: Airport
+  - arrivalAirport: Airport
+  - airplane: Airplane
+  + passengerList: list<Passenger>
+  --
+  + getPassengerList(): list<Passenger>
+  + addPassenger(passenger: Passenger): void
+  + cancelPassengerBooking(passenger: Passenger): void
+}
+
+class Passenger {
+  - name: string
+  - passportNumber: string
+  - seatNumber: string
+  - flight: Flight
+  --
+  + getDetails(): dict
+  + updateDetails(details: dict): void
+  + cancelBooking(): void
+}
+
+Airline "1" --> "many" Airplane
+Airline "1" --> "many" Flight
+Airport "1" --> "many" Flight
+Flight "1" --> "many" Passenger
+
+@enduml

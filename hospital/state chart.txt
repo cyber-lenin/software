@@ -1,0 +1,31 @@
+@startuml
+
+(*) --> "Patient arrives at hospital"
+
+if "Is New Patient?" then
+  -->[yes] "Register new patient information"
+  --> "Create patient record"
+else
+  -->[no] "Retrieve patient record"
+endif
+
+--> "Perform initial assessment"
+
+if "Requires Immediate Attention?" then
+  -->[yes] "Emergency Treatment"
+else
+  -->[no] if "Requires Admission?" then
+    -->[yes] "Allocate bed"
+    --> "Admit patient"
+    --> while (Treatment Ongoing?) is (yes)
+      --> "Provide necessary treatment"
+    --> repeat while (no)
+    --> "Finalize treatment"
+  else
+    -->[no] "Provide necessary treatment"
+  endif
+endif
+
+--> "Generate discharge summary"
+--> "Patient discharged"
+@enduml

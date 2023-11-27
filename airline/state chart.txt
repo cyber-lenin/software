@@ -1,0 +1,28 @@
+@startuml
+
+start
+
+if (User Searches Flights) then (Yes)
+  :Display Available Flights;
+  if (User Selects Flight) then (Yes)
+    :Enter Passenger Details;
+    if (Details Entered) then (Yes)
+      :Confirm Booking;
+      if (Booking Confirmed) then (Yes)
+        :Issue Ticket;
+      else (No)
+        :Display Error Message;
+      endif
+    else (No)
+      :Display Error Message;
+    endif
+  else (No)
+    :End Activity;
+  endif
+else (No)
+  :End Activity;
+endif
+
+stop
+
+@enduml

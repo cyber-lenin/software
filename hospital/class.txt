@@ -1,0 +1,67 @@
+@startuml
+
+class Patient {
+  -patientID: int
+  -name: string
+  -age: int
+  -gender: string
+  -address: string
+  -medicalRecord: MedicalRecord
+  +register()
+  +requestAppointment()
+  +payBill()
+}
+
+class Doctor {
+  -doctorID: int
+  -name: string
+  -specialization: string
+  -schedule: Schedule
+  +prescribeMedication()
+  +diagnose()
+}
+
+class Receptionist {
+  -receptionistID: int
+  -name: string
+  +bookAppointment()
+  +generateBill()
+}
+
+class Administrator {
+  -adminID: int
+  -name: string
+  +addDoctor()
+  +removePatient()
+}
+
+class MedicalRecord {
+  -recordID: int
+  -patientID: int
+  -details: string
+  +updateDetails()
+}
+
+class Schedule {
+  -scheduleID: int
+  -doctorID: int
+  -timeSlots: List<TimeSlot>
+  +addTimeSlot()
+  +removeTimeSlot()
+}
+
+class TimeSlot {
+  -timeSlotID: int
+  -startTime: DateTime
+  -endTime: DateTime
+}
+
+Patient --> MedicalRecord
+Doctor --> Schedule
+Schedule "1" --> "0..*" TimeSlot
+Receptionist --> Patient
+Receptionist --> Doctor
+Administrator --> Doctor
+Administrator --> Patient
+
+@enduml

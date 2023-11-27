@@ -1,0 +1,24 @@
+@startuml
+left to right direction
+
+actor "User" as User
+actor "Admin" as Admin
+
+rectangle "Airline Reservation System" {
+  usecase "Search Flights" as SearchFlights
+  usecase "Book Ticket" as BookTicket
+  usecase "Cancel Booking" as CancelBooking
+  usecase "Manage Flights" as ManageFlights
+  usecase "Manage Users" as ManageUsers
+
+  User --> SearchFlights
+  User --> BookTicket
+  User --> CancelBooking
+  Admin --> ManageFlights
+  Admin --> ManageUsers
+
+  SearchFlights --> BookTicket : Selects flight
+  BookTicket --> CancelBooking : If needed
+}
+
+@enduml

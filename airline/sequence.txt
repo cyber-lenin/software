@@ -1,0 +1,41 @@
+@startuml
+participant User
+participant "Airline Website" as Website
+participant "Database" as DB
+
+User -> Website: Request to search flights
+activate Website
+
+Website -> DB: Query for available flights
+activate DB
+DB --> Website: Return flight information
+deactivate DB
+
+Website --> User: Display available flights
+
+User -> Website: Selects a flight
+Website -> DB: Request to book a seat
+activate DB
+DB --> Website: Seat confirmation
+deactivate DB
+
+Website --> User: Confirmed seat booking
+
+User -> Website: Provides passenger details
+Website -> DB: Store passenger information
+activate DB
+DB --> Website: Confirmation of passenger details
+deactivate DB
+
+Website --> User: Booking confirmation
+
+User -> Website: Request to cancel booking
+Website -> DB: Cancel reservation
+activate DB
+DB --> Website: Cancellation confirmation
+deactivate DB
+
+Website --> User: Booking cancelled
+
+deactivate Website
+@enduml

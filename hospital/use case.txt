@@ -1,0 +1,33 @@
+@startuml
+
+left to right direction
+skinparam packageStyle rectangle
+
+actor Patient as "Patient"
+actor Doctor as "Doctor"
+actor Receptionist as "Receptionist"
+actor Administrator as "Administrator"
+
+rectangle "Hospital Management System" {
+  usecase "Appointment Booking" as UC1
+  usecase "Medical Records Management" as UC2
+  usecase "Billing System" as UC3
+  usecase "Staff Management" as UC4
+
+  Patient --> UC1
+  Doctor --> UC1
+  Receptionist --> UC1
+  Administrator --> UC1
+
+  Patient --> UC2
+  Doctor --> UC2
+  Administrator --> UC2
+
+  Patient --> UC3
+  Administrator --> UC3
+
+  Administrator --> UC4
+  Receptionist --> UC4
+}
+
+@enduml
